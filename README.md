@@ -39,4 +39,4 @@ The production-ready files will be generated in the build directory.
 5. This application is deployed on vercel.
 
 
-Link: https://react-table-app-dusky.vercel.app/
+Link: (https://table-ui-nine.vercel.app/)
