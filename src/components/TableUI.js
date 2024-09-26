@@ -156,7 +156,6 @@ const TableUI = () => {
                           </IconButton>
                         </th>
                       ))}
-                      <th className="fixed-width">Add Column</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -213,11 +212,10 @@ const TableUI = () => {
                                 )}
                               </td>
                             ))}
-                            <td className="add-column-cell">
+
                               <IconButton onClick={addVariantToAllRows} className="add-column-icon">
                                 <AddIcon />
                               </IconButton>
-                            </td>
                           </tr>
                         )}
                       </Draggable>
@@ -230,35 +228,45 @@ const TableUI = () => {
           </Droppable>
         </DragDropContext>
 
-        <IconButton onClick={addState} className="add-row-btn">
+        <IconButton onClick={addState} className="add-row-button">
           <AddIcon />
         </IconButton>
 
         {showImageGrid && (
-          <div className="overlay">
-            <div className="image-grid">
-              {sampleImages.map((img, i) => (
-                <div key={i} className="image-item">
-                  <img src={img} alt={`Image ${i + 1}`} />
-                  <button onClick={() => handleImageInsert(img)} className="insert-image-btn">
-                    Insert
-                  </button>
-                </div>
-              ))}
-            </div>
+          <div className="image-grid">
+            {sampleImages.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Sample ${index + 1}`}
+                className="sample-img"
+                onClick={() => handleImageInsert(image)}
+              />
+            ))}
           </div>
         )}
 
         {showDeleteColumnMenu && (
-          <div className="overlay">
-            <div className="delete-column-popup">
-              <p>Are you sure you want to delete this column?</p>
-              <button onClick={deleteColumn}>Yes</button>
-              <button onClick={() => setShowDeleteColumnMenu(false)}>No</button>
-            </div>
+          <div className="delete-column-menu">
+            <button onClick={deleteColumn}>Delete Column</button>
           </div>
         )}
       </div>
+      {showImageGrid && (
+  <div className="overlay">
+    <div className="image-grid">
+      {sampleImages.map((image, index) => (
+        <div key={index} className="image-item">
+          <img src={image} alt={`Sample ${index + 1}`} />
+          <button onClick={() => handleImageInsert(image)} className="insert-image-btn">
+            Insert
+          </button>
+        </div>
+      ))}
+      <button onClick={() => setShowImageGrid(false)} className="close-grid">Close</button>
+    </div>
+  </div>
+)}
     </div>
   );
 };
