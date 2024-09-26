@@ -7,29 +7,23 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
 }
 
 .table-wrapper {
   overflow: hidden;
-  background-color: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .table-content {
   display: block;
-  max-width: calc(150px + 150px + 5 * 220px);
+  max-width: calc(150px + 150px + 5 * 220px); /* Ensure 4 variant columns are visible, + two fixed columns */
   overflow-x: auto;
   white-space: nowrap;
 }
 
 .table-auto {
   width: 100%;
-  border-collapse: collapse; /* Collapse borders to remove spacing */
-  background-color: #f5f5f5; /* Light grey background for the table */
-  border: none; /* Remove borders from the table */
+  border-collapse: collapse;
+  background-color: #f9f9f9; /* Light gray background for table */
 }
 
 .table-auto th,
@@ -37,172 +31,71 @@ body {
   padding: 20px;
   text-align: center;
   font-size: 18px;
-  background-color: #fefefe;
-  transition: background-color 0.3s ease;
-  border: none; /* Remove borders from cells */
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for cell content */
 }
 
 .table-auto th {
-  color: #4a4a4a; /* Dark gray for column headers */
-  font-weight: bold; /* Make headers bold */
+  color: gray; /* Set text color of headers to gray */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Apply subtle 3D effect to headers */
 }
 
-.table-auto th:hover,
-.table-auto td:hover {
-  background-color: #f1f1f1; /* Light hover effect */
-}
 
 .fixed-width {
-  width: 150px;
+  width: 200px;
   position: sticky;
   left: 0;
   background: white;
   z-index: 2;
-  font-family: 'Kefir Demi Bold'; /* Apply the specified font */
 }
 
 .variant-columns-header {
   position: relative;
+  color: gray;
 }
 
 .variant-cell {
   min-width: 220px;
   width: 220px;
   padding: 25px;
-  position: relative;
-  border-radius: 8px; /* Slight rounding for details square */
-  background-color: transparent; /* Remove background for cells */
-  height: 220px; /* Make cell square */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-  overflow: hidden; /* Ensure no overflow from content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for cell */
 }
 
 .variant-cell img {
-  width: 100%; /* Ensure images fit */
-  height: auto; /* Maintain aspect ratio */
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  display: block;
-  margin: 0 auto;
-  transition: filter 0.3s ease; /* Transition for darkening effect */
+  transition: transform 0.3s; /* Transition for hover effect */
 }
 
-.variant-cell::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 8px; /* Match the rounding of the cell */
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(200, 200, 250, 0.5)); /* Gradient background */
-  z-index: -1; /* Place behind the image */
-}
-
-.variant-cell:hover img {
-  filter: brightness(50%); /* Darken image on hover */
-}
-
-.edit-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0; /* Hidden by default */
-  visibility: hidden; /* Hidden by default */
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  background-color: white; /* White background for the edit button */
-  padding: 10px; /* Adjust padding for square shape */
-  border: none; /* No border for a clean look */
-  border-radius: 4px; /* Square shape */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.variant-cell:hover .edit-icon {
-  opacity: 1; /* Show edit icon on hover */
-  visibility: visible;
-}
-
-.edit-icon {
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.row:hover .delete-row {
-  opacity: 1; /* Show delete button on row hover */
-  visibility: visible;
-}
-
-.delete-row {
-  position: absolute;
-  left: 10px; /* Adjust to place delete button at the top of the serial number */
-  top: 10px;
-  background-color: #ff4444; /* Red color for delete row */
-  color: white;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-  opacity: 0; /* Hidden by default */
-  visibility: hidden; /* Hidden by default */
-  transition: background-color 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.delete-row:hover {
-  background-color: #cc0000; /* Darker red on hover */
-}
-
-.variant-columns-header .dots-menu {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  float: right; /* Position ellipsis button to the right */
-}
-
-.dots-menu .fas {
-  font-size: 24px;
-  color: #4a4a4a; /* Dark gray for ellipsis icon */
-}
-
-.drag-handle {
-  cursor: grab;
-  display: inline-block;
-  text-align: center;
-  font-size: 24px;
-  margin-right: 15px;
-  padding: 10px;
-  background-color: #f1f1f1;
-  border-radius: 8px;
-}
-
-.drag-handle .fas {
-  font-size: 18px;
+.variant-cell img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 .add-column-cell {
   text-align: center;
 }
 
-.add-design-btn {
-  padding: 12px;
+.add-row-btn {
+  padding: 12px 25px;
   font-size: 18px;
-  background-color: transparent; /* Transparent background */
-  color: black;
-  border: 2px solid #007bff;
-  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  width: 150px; /* Increased width to accommodate text */
-  height: 50px; /* Adjust height for text */
+  transition: background-color 0.3s;
 }
 
-.add-design-btn:hover {
-  background-color: #f1f1f1; /* Light grey on hover */
+.add-row-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
-.add-design-btn:before {
-  content: "Add Design"; /* Text on the button */
-  display: inline-block; /* Ensures the text is centered */
-  font-weight: bold; /* Make text bold */
-  line-height: 50px; /* Center text vertically */
+.drag-handle {
+  cursor: grab;
+  margin-right: 15px;
+  display: inline-block;
+  font-size: 22px;
 }
 
 .overlay {
@@ -239,23 +132,29 @@ body {
 .image-item img {
   max-width: 100%;
   height: auto;
+  cursor: pointer; /* Allow image to be clicked */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s; /* Add hover effect */
+}
+
+.image-item img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 .close-grid {
   grid-column: span 4;
   margin-top: 20px;
   padding: 12px;
-  background-color: #f44336; /* Red background for close button */
+  background-color: #f44336;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 18px; /* Larger font size for close button */
+  font-size: 18px;
 }
 
 .variant-img {
-  width: 80%;
+  width: 100%;
   height: auto;
   object-fit: cover;
   display: block;
@@ -268,7 +167,7 @@ body {
 
 .delete-column-icon {
   margin-left: 8px;
-  float: right; /* Position delete icon at the end of the cell */
+  float:right;
 }
 
 .delete-column-menu {
@@ -288,3 +187,153 @@ body {
   padding: 12px 20px;
   font-size: 18px;
 }
+
+/* Add hover effect for showing delete row icon */
+tr:hover .delete-row {
+  visibility: visible; /* Show delete icon on hover */
+}
+
+/* Add hover effect for showing edit icon on image hover */
+.image-container:hover .edit-icon {
+  visibility: visible; /* Show edit icon on image hover */
+}
+
+.edit-icon {
+  visibility: hidden; /* Initially hidden */
+  cursor: pointer; /* Pointer for edit icon */
+}
+
+.delete-row {
+  visibility: hidden; /* Initially hidden */
+  transition: visibility 0.3s; /* Smooth transition for visibility */
+}
+
+/* Added transition for smooth visibility */
+.image-container:hover .edit-icon {
+  visibility: visible; /* Show edit icon on image hover */
+}
+
+/* ... existing styles ... */
+
+.variant-cell {
+  min-width: 220px;
+  width: 220px;
+  padding: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for cell */
+  position: relative; /* Position relative to allow absolute positioning of the button */
+}
+
+.variant-cell img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  transition: transform 0.3s; /* Transition for hover effect */
+}
+
+/* Darken the image when the edit button is visible */
+.variant-cell:hover img {
+  filter: brightness(50%); /* Darken the image */
+}
+
+/* Center the edit icon */
+.edit-icon {
+  visibility: hidden; /* Initially hidden */
+  position: absolute; /* Position it absolutely */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for the icon size */
+}
+
+/* Show the edit icon on image hover */
+.variant-cell:hover .edit-icon {
+  visibility: visible; /* Show edit icon on hover */
+}
+
+/* ... existing styles ... */
+/* ...existing styles... */
+
+.filter-box {
+  background: linear-gradient(to bottom right, #e3e3e3, #ffffff); /* Slightly different gradient */
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%; /* Occupy full width of the cell */
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for filter box */
+}
+
+.add-design-btn,
+.add-row-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.add-design-btn:hover,
+.add-row-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.row-shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 3D shadow effect for rows */
+}
+
+.variant-cell {
+  position: relative; /* Make it position relative to contain absolutely positioned elements */
+}
+
+.variant-img {
+  width: 80%; /* Ensure all images are the same size */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.delete-row,
+.add-column-icon,
+.edit-icon {
+  margin-left: 5px; /* Space between icons */
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.image-item {
+  position: relative;
+}
+
+.insert-image-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.delete-column-icon {
+  padding: 0; /* Remove padding for the icon button */
+}
+
+/* Styles for delete column confirmation menu */
+.delete-column-menu {
+  position: absolute;
+  background: white;
+  border: 1px solid gray;
+  padding: 10px;
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.confirm-delete-btn,
+.cancel-delete-btn {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Add any additional styles as necessary */
+
