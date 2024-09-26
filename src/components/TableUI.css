@@ -15,7 +15,7 @@ body {
 
 .table-content {
   display: block;
-  max-width: calc(150px + 150px + 5 * 220px); /* Ensure 4 variant columns are visible, + two fixed columns */
+  max-width: calc(150px + 150px + 8 * 220px); /* Ensure 4 variant columns are visible, + two fixed columns */
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -32,14 +32,13 @@ body {
   text-align: center;
   font-size: 18px;
   border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for cell content */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for cell content */
 }
 
 .table-auto th {
   color: gray; /* Set text color of headers to gray */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Apply subtle 3D effect to headers */
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15); /* Apply subtle 3D effect to headers */
 }
-
 
 .fixed-width {
   width: 200px;
@@ -54,26 +53,31 @@ body {
   color: gray;
 }
 
-.variant-cell {
+.variant-cell,
+.table-auto td {
   min-width: 220px;
-  width: 220px;
   padding: 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for cell */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for content only */
+  position: relative; /* For positioning elements within the cell */
 }
 
-.variant-cell img {
+.variant-cell img,
+.table-auto td img {
   width: 100px;
   height: 100px;
   object-fit: cover;
   transition: transform 0.3s; /* Transition for hover effect */
 }
 
-.variant-cell img:hover {
+.variant-cell img:hover,
+.table-auto td img:hover {
   transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 .add-column-cell {
   text-align: center;
+  width: 60px; /* Reduced width for the Add Column column */
+  padding: 5px; /* Adjust padding to match the reduced width */
 }
 
 .add-row-btn {
@@ -154,9 +158,8 @@ body {
 }
 
 .variant-img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  width: 80%; /* Ensure all images are the same size */
+  height: auto; /* Maintain aspect ratio */
   display: block;
   margin: 0 auto;
 }
@@ -167,7 +170,7 @@ body {
 
 .delete-column-icon {
   margin-left: 8px;
-  float:right;
+  float: right;
 }
 
 .delete-column-menu {
@@ -208,30 +211,9 @@ tr:hover .delete-row {
   transition: visibility 0.3s; /* Smooth transition for visibility */
 }
 
-/* Added transition for smooth visibility */
-.image-container:hover .edit-icon {
-  visibility: visible; /* Show edit icon on image hover */
-}
-
-/* ... existing styles ... */
-
-.variant-cell {
-  min-width: 220px;
-  width: 220px;
-  padding: 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for cell */
-  position: relative; /* Position relative to allow absolute positioning of the button */
-}
-
-.variant-cell img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  transition: transform 0.3s; /* Transition for hover effect */
-}
-
 /* Darken the image when the edit button is visible */
-.variant-cell:hover img {
+.variant-cell:hover img,
+.table-auto td:hover img {
   filter: brightness(50%); /* Darken the image */
 }
 
@@ -245,22 +227,21 @@ tr:hover .delete-row {
 }
 
 /* Show the edit icon on image hover */
-.variant-cell:hover .edit-icon {
+.variant-cell:hover .edit-icon,
+.table-auto td:hover .edit-icon {
   visibility: visible; /* Show edit icon on hover */
 }
 
-/* ... existing styles ... */
-/* ...existing styles... */
-
+/* Slightly smaller button width in the product filter */
 .filter-box {
   background: linear-gradient(to bottom right, #e3e3e3, #ffffff); /* Slightly different gradient */
-  padding: 10px;
+  padding: 8px; /* Less padding for smaller width */
   border-radius: 4px;
   cursor: pointer;
   display: inline-block;
-  width: 100%; /* Occupy full width of the cell */
+  width: 90%; /* Slightly smaller than the cell width */
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 3D effect for filter box */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect only around content */
 }
 
 .add-design-btn,
@@ -276,16 +257,11 @@ tr:hover .delete-row {
 }
 
 .row-shadow {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 3D shadow effect for rows */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow effect for row content only */
 }
 
 .variant-cell {
   position: relative; /* Make it position relative to contain absolutely positioned elements */
-}
-
-.variant-img {
-  width: 80%; /* Ensure all images are the same size */
-  height: auto; /* Maintain aspect ratio */
 }
 
 .delete-row,
@@ -334,6 +310,3 @@ tr:hover .delete-row {
   padding: 5px 10px;
   cursor: pointer;
 }
-
-/* Add any additional styles as necessary */
-

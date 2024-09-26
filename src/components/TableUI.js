@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
 import Tooltip from "@mui/material/Tooltip";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faGripVertical, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -59,7 +57,7 @@ const TableUI = () => {
   const [selectedCell, setSelectedCell] = useState(null);
   const [showDeleteColumnMenu, setShowDeleteColumnMenu] = useState(false);
   const [columnToDelete, setColumnToDelete] = useState(null);
-  const [filterText, setFilterText] = useState({}); // State to manage filter text input
+  const [filterText, setFilterText] = useState({});
 
   const addState = () => {
     const newState = {
@@ -242,7 +240,9 @@ const TableUI = () => {
               {sampleImages.map((img, i) => (
                 <div key={i} className="image-item">
                   <img src={img} alt={`Image ${i + 1}`} />
-                  <button onClick={() => handleImageInsert(img)} className="insert-image-btn">Insert</button>
+                  <button onClick={() => handleImageInsert(img)} className="insert-image-btn">
+                    Insert
+                  </button>
                 </div>
               ))}
             </div>
@@ -250,10 +250,12 @@ const TableUI = () => {
         )}
 
         {showDeleteColumnMenu && (
-          <div className="delete-column-menu">
-            <p>Are you sure you want to delete this column?</p>
-            <button onClick={deleteColumn} className="confirm-delete-btn">Yes</button>
-            <button onClick={() => setShowDeleteColumnMenu(false)} className="cancel-delete-btn">No</button>
+          <div className="overlay">
+            <div className="delete-column-popup">
+              <p>Are you sure you want to delete this column?</p>
+              <button onClick={deleteColumn}>Yes</button>
+              <button onClick={() => setShowDeleteColumnMenu(false)}>No</button>
+            </div>
           </div>
         )}
       </div>
